@@ -1,0 +1,52 @@
+/* Background Gradient */
+.email-app-bg {
+  background: linear-gradient(to bottom, #0b1f3a, #3b4e6b);
+}
+
+/* Custom Dark Beige */
+:root {
+  --dark-beige: #a68c6d;
+}
+
+/* Search bar focus style */
+.search-bar:focus {
+  border-color: var(--dark-beige);
+  box-shadow: 0 0 0 0.2rem rgba(166, 140, 109, 0.5);
+}
+
+/* Folder buttons focus outline */
+.folder-item:focus {
+  outline: 2px solid var(--dark-beige);
+  outline-offset: 2px;
+}
+
+/* Active folder and email item background */
+.folder-item.active,
+.email-item.active {
+  background-color: var(--dark-beige) !important;
+  color: #fff !important;
+}
+
+/* Email content box visibility and active style */
+.email-content-box {
+  display: none;
+}
+
+.email-content-box.active {
+  border: 2px solid var(--dark-beige);
+  background-color: #fff3e0;
+  display: block;
+}
+
+/* Responsive adjustments for folders on small screens */
+@media (max-width: 767.98px) {
+  .folders {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+
+  .folder-item {
+    flex: 1 1 auto;
+  }
+}

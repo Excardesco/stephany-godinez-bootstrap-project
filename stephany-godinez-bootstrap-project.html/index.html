@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Email Page</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Your Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container-fluid min-vh-100 email-app-bg text-light py-3">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2 class="text-white">Yo You Got Mail Dude</h2>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <input type="search" class="form-control search-bar" placeholder="Maybe you'll find it here dude..." />
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Compose Button -->
+      <div class="col-12 col-md-2 mb-3">
+        <button class="btn btn-primary w-100">It ain't gonna write itself dude</button>
+      </div>
+
+      <!-- Folder List -->
+      <div class="col-12 col-md-2 mb-3">
+        <div class="d-flex flex-md-column gap-2 folders">
+          <button class="btn btn-outline-light folder-item active">Open It Bro</button>
+          <button class="btn btn-outline-light folder-item">Shot It Out Already</button>
+          <button class="btn btn-outline-light folder-item">GO AWAY</button>
+          <button class="btn btn-outline-light folder-item">STAY AWAY</button>
+        </div>
+      </div>
+
+      <!-- Email List -->
+      <div class="col-12 col-md-4 mb-3">
+        <div class="list-group" id="emailList">
+          <button class="list-group-item list-group-item-action email-item" data-id="email1">
+            <strong>NATHAN GOBLIN OF GOBLINS:</strong> CLOCKIFY UPDATE
+          </button>
+          <button class="list-group-item list-group-item-action email-item" data-id="email2">
+            <strong>HALEY PURR</strong> DESIGNER HEADPHONES
+          </button>
+          <button class="list-group-item list-group-item-action email-item" data-id="email3">
+            <strong>Support:</strong> Ticket Response
+          </button>
+        </div>
+      </div>
+
+      <!-- Email Content -->
+      <div class="col-12 col-md-4" id="emailContent">
+        <div class="email-content-box border rounded p-3 bg-light text-dark mb-3" data-id="email1">
+          <h5>CLOCKIFY UPDATE</h5>
+          <p><small>From: NATHAN GOBLIN OF GOBLINS</small></p>
+          <p>START CLOCKING IN</p>
+          <button class="btn btn-secondary mt-2">Reply Dude</button>
+          <textarea class="form-control mt-3" rows="3" placeholder="Write your reply..."></textarea>
+        </div>
+
+        <div class="email-content-box border rounded p-3 bg-light text-dark mb-3" data-id="email2">
+          <h5>DESIGNER HEADPHONES</h5>
+          <p><small>From: HALEY PURR</small></p>
+          <p>NEW HEADPHONES IN!!!!!</p>
+          <button class="btn btn-secondary mt-2">Reply Dude</button>
+          <textarea class="form-control mt-3" rows="3" placeholder="Write your reply..."></textarea>
+        </div>
+
+        <div class="email-content-box border rounded p-3 bg-light text-dark" data-id="email3">
+          <h5>Ticket Response</h5>
+          <p><small>From: Support</small></p>
+          <p>Thank you for reaching out. Your ticket has been resolved. Please contact us again if needed.</p>
+          <button class="btn btn-secondary mt-2">Reply Dude</button>
+          <textarea class="form-control mt-3" rows="3" placeholder="Write your reply..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script>
+    // Folder buttons active toggle
+    document.querySelectorAll('.folder-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.folder-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+
+    // Email items active toggle & show corresponding content
+    const emailItems = document.querySelectorAll('.email-item');
+    const emailContents = document.querySelectorAll('.email-content-box');
+
+    emailItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Clear active state from email list
+        emailItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        // Get clicked email's ID
+        const id = item.getAttribute('data-id');
+
+        // Show corresponding content and hide others
+        emailContents.forEach(box => {
+          if (box.getAttribute('data-id') === id) {
+            box.classList.add('active');
+          } else {
+            box.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
